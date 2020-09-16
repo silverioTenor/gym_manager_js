@@ -1,5 +1,5 @@
 const fs = require('fs');
-const data = require('../data.json');
+const data = require('../../data.json');
 
 // INDEX
 exports.index = (req, res) => {
@@ -27,11 +27,26 @@ exports.post = (req, res) => {
         id = data.instructors.length + 1;
     }
 
-    let { avatar_url, name, birth, gender, services } = req.body;
+    let { 
+        avatar_url, 
+        name, 
+        birth, 
+        gender, 
+        services 
+    } = req.body;
 
-    const bodyAll = { id, avatar_url, name, birth, gender, services };
+    birth = Date.parse(birth);
+    const created_at = Date.now();
 
-    data.instructors.push(bodyAll);
+    data.instructors.push({ 
+        id, 
+        avatar_url, 
+        name, 
+        birth, 
+        gender, 
+        services, 
+        created_at 
+    });
 
     fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
         return err ? res.send("File write error!") : res.redirect("/instructors");
