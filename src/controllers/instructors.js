@@ -1,5 +1,6 @@
 const fs = require('fs');
 const data = require('../../data.json');
+const { age } = require('../utils');
 
 // INDEX
 exports.index = (req, res) => {
@@ -64,10 +65,15 @@ exports.show = (req, res) => {
 
     if (!foundInstructor) return res.send("Instructor not found!");
 
-    foundInstructor.services = foundInstructor.services.split();
+    const instructor = {
+        ...foundInstructor,
+        birth: `${age(foundInstructor.birth)} anos`,
+        services: foundInstructor.services.split(","),
+        created_at: ""
+    }
 
     // return res.send(foundInstructor);
-    return res.render("instructors/show", { instructor: foundInstructor });
+    return res.render("instructors/show", { instructor });
 }
 
 // UPDATE
