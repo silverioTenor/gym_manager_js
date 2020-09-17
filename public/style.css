@@ -284,3 +284,70 @@ button[type=submit] {
     font-weight: bold;
     text-transform: uppercase;
 }
+
+/* ===================== INDEX ===================== */
+
+/* ===================== SEARCH ===================== */
+
+.page_index {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: none;
+    grid-template-rows: 60px 440px 50px;
+    box-sizing: border-box;
+}
+
+.search {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.search a {
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    align-self: center;
+    border-radius: 8px;
+}
+
+.search .filter {
+    justify-self: flex-end;
+    display: grid;
+    grid-template-columns: 150px 250px;
+}
+
+.filter button {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+
+    margin-top: 0;
+    padding: 0;
+
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+
+    font-weight: normal;
+    text-transform: capitalize;
+}
+
+.filter input {
+    width: 100%;
+    margin-left: 5px;
+    padding-left: 10px;
+    outline: none;
+    border-bottom: 2px solid #555;
+    box-sizing: border-box;
+}
+
+.filter input:focus,
+.filter input:hover {
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* ===================== TABLE ===================== */
+
+.table {
+    margin-top: 20px;
+}

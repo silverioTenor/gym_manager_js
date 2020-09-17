@@ -1,39 +1,52 @@
 {% extends '../layout.njk' %}
 
 {% block content %}
-    <div class="card">
-        <section class="avatar"></section>
+    <div class="card page_index">
+        <section class="search">
+            <a href="/instructors/create" class="button">Novo instrutor</a>
 
-        <section class="details">
-            <h3>Detalhes</h3>
-
-            <div class="item">
-                <div>Instrutor</div>
-                <div>Rodrigo Silvério</div>
-            </div>
-            
-            <div class="item">
-                <div>Idade</div>
-                <div>26</div>
-            </div>
-            
-            <div class="item">
-                <div>Sexo</div>
-                <div>Masculino</div>
-            </div>
-
-            <div class="item">
-                <div>Acompanhamento</div>
-                <div>
-                    <span>Musculação</span>
-                    <span>Calistenia</span>
-                </div>
-            </div>
-
-            <div class="item">
-                <div>Desde</div>
-                <div>16/09/2020</div>
+            <div class="filter">
+                <button type="submit" class="button">Pesquisar</button>
+                <input type="text" name="filter" placeholder="Instrutor(a)"/>
             </div>
         </section>
+        <section class="table">
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>Serviços</th>
+                    <th>Perfil</th>
+                </tr>
+                {% if instructors %}
+                    {% for instructor in instructors %}
+                        <tr>
+                            <td>
+                                <div class="photo_instructor">
+                                    <img src="{{ instructor.avatar_url }}" alt="instrutor(a) - {{ instructor.name }}"/>
+                                    <span>{{ instructor.name }}</span>
+                                </div>
+                            </td>
+                            <td>
+                                {% for services in instructor.services %}
+                                    <span>{{ services }}</span>
+                                {% endfor %}
+                            </td>
+                            <td>
+                                <div class="action_button">
+                                    <button>Ver</button>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% elseif  not instructors %}
+                    <tr>
+                        <td colspan="3">
+                            <span class="not_instructor">Nenhum instrutor(a) encontrado(a)</span>
+                        </td>
+                    </tr>
+                {% endif %}
+            </table>
+        </section>
+        <section class="pagination"></section>
     </div>
 {% endblock content %}
