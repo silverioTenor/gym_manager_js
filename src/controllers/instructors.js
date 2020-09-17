@@ -1,6 +1,6 @@
 const fs = require('fs');
 const data = require('../../data.json');
-const { age } = require('../utils');
+const { age, date } = require('../utils');
 
 // INDEX
 exports.index = (req, res) => {
@@ -69,7 +69,7 @@ exports.show = (req, res) => {
         ...foundInstructor,
         birth: `${age(foundInstructor.birth)} anos`,
         services: foundInstructor.services.split(","),
-        created_at: ""
+        created_at: date(foundInstructor.created_at)
     }
 
     // return res.send(foundInstructor);

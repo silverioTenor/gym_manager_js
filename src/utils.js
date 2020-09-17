@@ -12,5 +12,14 @@ module.exports = {
         }
 
         return age;
+    },
+    date: (timestamp) => {
+        const today = new Date(timestamp);
+
+        const date = today.getDate();
+        const month = today.getMonth();
+        const year = today.getFullYear();
+
+        return `${date}/${month}/${year}`;
     }
 }
