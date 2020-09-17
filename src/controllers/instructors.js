@@ -77,5 +77,8 @@ exports.show = (req, res) => {
 }
 
 // UPDATE
+exports.update = (req, res) => {
+    return res.render("instructors/update");
+}
 
 // DELETE
