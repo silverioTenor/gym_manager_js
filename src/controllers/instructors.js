@@ -78,7 +78,20 @@ exports.show = (req, res) => {
 
 // UPDATE
 exports.update = (req, res) => {
-    return res.render("instructors/update");
+    const { id } = req.params;
+
+    const foundInstructor = data.instructors.find(instructor => {
+        return instructor.id == id;
+    });
+
+    if (!foundInstructor) return res.send("Instructor not found!");
+
+    const instructor = {
+        ...foundInstructor,
+        birth: "",
+        services: foundInstructor.services.replace()
+    }
+    return res.render("instructors/update", { instructor });
 }
 
 // DELETE

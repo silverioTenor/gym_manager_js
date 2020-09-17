@@ -1,21 +1,41 @@
 <div class="item">
     <div>Avatar URL</div>
     <div>
-        <input type="text" name="avatar_url" placeholder="http://"/>
+        <input 
+            type="text" 
+            name="avatar_url" 
+            placeholder="http://"
+            {% if instructor.avatar_url %}
+                value="{{ instructor.avatar_url }}"
+            {% endif %}
+        />
     </div>
 </div>
 
 <div class="item">
     <div>Instrutor</div>
     <div>
-        <input type="text" name="name" placeholder="Nome do instrutor"/>
+        <input 
+            type="text" 
+            name="name" 
+            placeholder="Nome do instrutor"
+            {% if instructor.name %}
+                value="{{ instructor.name }}"
+            {% endif %}
+        />
     </div>
 </div>
 
 <div class="item">
     <div>Data de nascimento</div>
     <div>
-        <input type="date" name="birth"/>
+        <input 
+            type="date" 
+            name="birth"
+            {% if instructor.birth %}
+                value="{{ instructor.birth }}"
+            {% endif %}
+        />
     </div>
 </div>
 
@@ -23,12 +43,24 @@
     <div>Sexo</div>
     <div>
         <span>
-            <input type="radio" name="gender" value="masc"/>
-            Masculino
+            <input 
+                type="radio" 
+                name="gender" 
+                value="masc"
+                {% if instructor.gender == "masc" %}
+                    checked
+                {% endif %}
+            /> Masculino
         </span>
         <span>
-            <input type="radio" name="gender" value="fem"/>
-            Feminino
+            <input 
+                type="radio" 
+                name="gender" 
+                value="fem"
+                {% if instructor.gender == "fem" %}
+                    checked
+                {% endif %}
+            /> Feminino
         </span>
     </div>
 </div>
@@ -36,7 +68,14 @@
 <div class="item">
     <div>Área de atuação</div>
     <div>
-        <input type="text" name="services" placeholder="Separe por vírgula as áreas de atuação"/>
+        <input 
+            type="text" 
+            name="services" 
+            placeholder="Separe por vírgula as áreas de atuação"
+            {% if instructor.avatar_url %}
+                value="{{ instructor.services }}"
+            {% endif %}
+            />
     </div>
 </div>
 
