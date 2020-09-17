@@ -146,6 +146,7 @@ header .links {
     width: 500px;
     padding: 40px;
     box-sizing: border-box;
+    overflow: auto;
 }
 
 .details .item {
@@ -192,10 +193,36 @@ header .links {
     letter-spacing: 0.7px;
 }
 
+.options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.options a {
+    box-sizing: border-box;
+    border: 2px solid var(--primary-color);
+}
+
+.options a:hover {
+    border: 2px solid var(--secondary-color);
+}
+
+.delete {
+    color: #d82323 !important;
+    border: 2px solid #d82323 !important;
+    background-color: #d8232300 !important;
+}
+
+.delete:hover {
+    color: #fff !important;
+    background-color: #d82323 !important;
+}
+
 /* ===================== SCROLLBAR ===================== */
 
 .details::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 .details::-webkit-scrollbar-track {
@@ -203,12 +230,12 @@ header .links {
 }
 
 .details::-webkit-scrollbar-thumb {
-    background: #eff30d;
+    background: var(--tertiary-color);
 }
 
-.details::-webkit-scrollbar-thumb:hover {
+/* .details::-webkit-scrollbar-thumb:hover {
     background: #babd08;
-}
+} */
 
 /* ===================== FORM ===================== */
 
@@ -246,10 +273,12 @@ input::placeholder {
     background-color: var(--secondary-color);
 }
 
+.button_redirect,
 button[type=submit] {
     width: 100%;
     margin-top: 30px;
     padding: 15px;
+    display: block;
     
     font-size: 16px;
     font-weight: bold;
