@@ -6,13 +6,15 @@
 
 {% block content %}
 
-    <style>
-        .avatar {
-            background: url("{{ instructor.avatar_url }}") no-repeat;
-            background-position: center;
-            background-size: cover;
-        }
-    </style>
+    {% if instructor.avatar_url %}
+        <style>
+            .avatar {
+                background: url("{{ instructor.avatar_url }}") no-repeat;
+                background-position: center;
+                background-size: cover;
+            }
+        </style>
+    {% endif %}
 
     <div class="card">
         <section class="avatar"></section>
