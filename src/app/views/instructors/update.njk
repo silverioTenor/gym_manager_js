@@ -5,49 +5,10 @@
         <section class="avatar"></section>
 
         <section class="details">
-            <h3>Cadastro de instrutor</h3>
+            <h3>Editar instrutor</h3>
 
-            <div class="item">
-                <div>Avatar URL</div>
-                <div>
-                    <input type="text" name="avatar_url" placeholder="http://"/>
-                </div>
-            </div>
-            
-            <div class="item">
-                <div>Instrutor</div>
-                <div>
-                    <input type="text" name="name" placeholder="Nome do instrutor"/>
-                </div>
-            </div>
-            
-            <div class="item">
-                <div>Data de nascimento</div>
-                <div>
-                    <input type="date" name="birth"/>
-                </div>
-            </div>
-            
-            <div class="item">
-                <div>Sexo</div>
-                <div>
-                    <span>
-                        <input type="radio" name="gender" value="masc"/> Masculino 
-                    </span>
-                    <span>
-                        <input type="radio" name="gender" value="fem"/> Feminino 
-                    </span>
-                </div>
-            </div>
+            {% include 'instructors/fields.njk' %}
 
-            <div class="item">
-                <div>Área de atuação</div>
-                <div>
-                    <input type="text" name="services" placeholder="Separe por vírgula as áreas de atuação"/>
-                </div>
-            </div>
-
-            <button type="submit" class="button">Cadastrar</button>
         </section>
     </form>
 {% endblock content %}
