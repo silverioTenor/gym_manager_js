@@ -55,7 +55,6 @@ exports.post = (req, res) => {
 }
 
 // SHOW
-
 exports.show = (req, res) => {
     const { id } = req.params;
 
@@ -69,7 +68,7 @@ exports.show = (req, res) => {
         ...foundInstructor,
         birth: `${age(foundInstructor.birth)} anos`,
         services: foundInstructor.services.split(","),
-        created_at: date(foundInstructor.created_at)
+        created_at: date(foundInstructor.created_at).br
     }
 
     // return res.send(foundInstructor);
@@ -88,7 +87,7 @@ exports.update = (req, res) => {
 
     const instructor = {
         ...foundInstructor,
-        birth: "",
+        birth: date(foundInstructor.birth).iso,
         services: foundInstructor.services.replace()
     }
     return res.render("instructors/update", { instructor });

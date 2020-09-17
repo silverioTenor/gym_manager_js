@@ -14,12 +14,15 @@ module.exports = {
         return age;
     },
     date: (timestamp) => {
-        const today = new Date(timestamp);
+        const date = new Date(timestamp);
 
-        const date = today.getDate();
-        const month = today.getMonth();
-        const year = today.getFullYear();
+        const day = `0${date.getUTCDate()}`.slice(-2);
+        const month = `0${date.getUTCMonth() + 1}`.slice(-2);
+        const year = date.getUTCFullYear();
 
-        return `${date}/${month}/${year}`;
+        return {
+            iso: `${year}-${month}-${day}`,
+            br: `${day}/${month}/${year}`
+        };
     }
 }
