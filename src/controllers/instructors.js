@@ -27,25 +27,25 @@ exports.post = (req, res) => {
         id = data.instructors.length + 1;
     }
 
-    let { 
-        avatar_url, 
-        name, 
-        birth, 
-        gender, 
-        services 
+    let {
+        avatar_url,
+        name,
+        birth,
+        gender,
+        services
     } = req.body;
 
     birth = Date.parse(birth);
     const created_at = Date.now();
 
-    data.instructors.push({ 
-        id, 
-        avatar_url, 
-        name, 
-        birth, 
-        gender, 
-        services, 
-        created_at 
+    data.instructors.push({
+        id,
+        avatar_url,
+        name,
+        birth,
+        gender,
+        services,
+        created_at
     });
 
     fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
@@ -54,6 +54,21 @@ exports.post = (req, res) => {
 }
 
 // SHOW
+
+exports.show = (req, res) => {
+    const { id } = req.params;
+
+    const foundInstructor = data.instructors.find(instructor => {
+        return instructor.id == id;
+    });
+
+    if (!foundInstructor) return res.send("Instructor not found!");
+
+    foundInstructor.services = foundInstructor.services.split();
+
+    // return res.send(foundInstructor);
+    return res.render("instructors/show", { instructor: foundInstructor });
+}
 
 // UPDATE
 

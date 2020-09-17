@@ -8,6 +8,8 @@ routes.get('/instructors', instructors.index);
 
 routes.get('/instructors/create', (req, res) => res.render("instructors/create"));
 
+routes.get('/instructors/:id', instructors.show);
+
 routes.post('/instructors', instructors.post);
 
 routes.get('/members', (req, res) => res.render("members/index"));
