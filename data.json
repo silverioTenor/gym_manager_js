@@ -26,6 +26,15 @@
       "gender": "fem",
       "services": "Moda, cinema, direção",
       "created_at": 1600386262858
+    },
+    {
+      "id": 4,
+      "avatar_url": "https://www.rbsdirect.com.br/imagesrc/24645080.jpg?w=700",
+      "name": "Marina Ruy Barbosa",
+      "birth": 797644800000,
+      "gender": "fem",
+      "services": "Musculação, Calistenia, Música, Saúde, Esportes, Festas, Rolê",
+      "created_at": 1600465298267
     }
   ]
 }

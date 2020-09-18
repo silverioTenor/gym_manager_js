@@ -291,7 +291,7 @@ button[type="submit"] {
 /* ===================== SEARCH ===================== */
 
 .page_index {
-    padding: 20px;
+    padding: 40px;
     display: grid;
     grid-template-columns: none;
     grid-template-rows: 60px 440px 50px;
@@ -361,28 +361,31 @@ table {
 }
 
 table tr th {
-    font-size: 16px;
+    font-size: 14px;
     text-transform: uppercase;
-}
-
-table tr th {
+    color: #777;
     background-color: #fff;
-    border-bottom: 2px solid #555;
+    border-bottom: 2px solid #777;
 }
 
 th,
 td {
-    padding: 10px 16px;
+    /* padding: 10px 16px; */
+    padding: 12px;
     text-align: start;
 }
 
-table tr td {
+table tr {
     border-bottom: 1px solid #c2c2c2;
+}
+
+table tr:last-child {
+    border-bottom: 0px;
 }
 
 table tr td .photo_instructor {
     display: grid;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 90px 1fr;
 }
 
 table tr td .photo_instructor img {
@@ -397,25 +400,33 @@ table tr td .photo_instructor img {
 
 table tr td .photo_instructor span {
     align-self: center;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #777;
 }
 
 table tr td .box {
-    width: 500px;
+    max-width: 500px;
 }
 
 table tr td .service {
     margin: 4px 0;
     padding: 8px 16px;
     display: inline-block;
-    border-radius: 16px;
+
     text-align: center;
     text-transform: capitalize;
     font-size: 14px;
     font-weight: bold;
+    
     color: #707070;
     background-color: var(--tertiary-color);
+    border-radius: 16px;
     box-sizing: border-box;
+}
+
+table tr td .service + .service {
+    margin-left: 4px;
 }
 
 .action_button a {
@@ -427,6 +438,7 @@ table tr td .service {
     display: block;
     color: #fff;
     font-size: 14px;
+    font-weight: bold;
     border-radius: 4px;
 }
 
