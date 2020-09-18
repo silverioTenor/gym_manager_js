@@ -21,6 +21,11 @@ exports.index = (req, res) => {
 };
 
 // CREATE
+exports.create = (req, res) => {
+    return res.render("instructors/create");
+}
+
+// POST
 exports.post = (req, res) => {
     const keys = Object.keys(req.body);
 
@@ -104,6 +109,34 @@ exports.update = (req, res) => {
         services: foundInstructor.services.replace()
     }
     return res.render("instructors/update", { instructor });
+}
+
+// PUT
+exports.put = (req, res) => {
+    const { id } = req.body;
+    let index = 0;
+
+    const foundInstructor = data.instructors.find((instructor, foundIndex) => {
+        if (instructor.id == id) {
+            index = foundIndex;
+            return true;
+        }
+    });
+
+    if (!foundInstructor) res.send("Instructor not found!");
+
+    const instructor = {
+        ...foundInstructor,
+        ...req.body,
+        id: Number(req.body.id),
+        birth: Date.parse(req.body.birth)
+    };
+
+    data.instructors[index] = instructor;
+
+    fs.writeFile("data.json", JSON.stringify(data, null, 2), err => {
+        return err ? res.send("File write error!") : res.redirect(`/instructors/${id}`);
+    });
 }
 
 // DELETE
