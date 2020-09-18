@@ -23,13 +23,13 @@ body {
 
 /* ===================== MENU ASIDE ===================== */
 
-header {
+aside {
     width: 190px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-header .links {
+aside .links {
     width: 0px;
     height: 100vh;
     padding-top: 10px;
