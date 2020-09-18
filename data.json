@@ -26,15 +26,6 @@
       "gender": "fem",
       "services": "Moda, cinema, direção",
       "created_at": 1600386262858
-    },
-    {
-      "id": 4,
-      "avatar_url": "https://tmssl.akamaized.net/images/portrait/originals/119115-1449060197.jpg",
-      "name": "Caio Fernandes",
-      "birth": 861148800000,
-      "gender": "masc",
-      "services": "Musculação, Calistenia, Música, Saúde, Esportes, Festas, Rolê",
-      "created_at": 1600386387625
     }
   ]
 }

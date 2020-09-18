@@ -65,6 +65,7 @@
 
             <div class="decision">
                 <form method="POST" action="/instructors?_method=DELETE">
+                    <input type="hidden" name="id" value="{{ instructor.id }}"/>
                     <button type="submit" class="button">Sim</button>
                 </form>
                 <button class="button button_redirect cancel">Não</button>

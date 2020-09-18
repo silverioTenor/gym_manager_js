@@ -140,3 +140,18 @@ exports.put = (req, res) => {
 }
 
 // DELETE
+exports.delete = (req, res) => {
+    const { id } = req.body;
+
+    const filterdInstructor = data.instructors.filter(instructor => {
+        return instructor.id != id;
+    });
+
+    if (!filterdInstructor) return res.send("Search error!");
+
+    data.instructors = filterdInstructor;
+
+    fs.writeFile("data.json", JSON.stringify(data, null, 2), err => {
+        return err ? res.send("File write error!") : res.redirect("/instructors");
+    });
+}

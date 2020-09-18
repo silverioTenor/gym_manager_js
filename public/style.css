@@ -309,7 +309,7 @@ button[type="submit"] {
     height: 40px;
     line-height: 40px;
     align-self: center;
-    border-radius: 8px;
+    border-radius: 4px;
 }
 
 .search .filter {
@@ -326,8 +326,8 @@ button[type="submit"] {
     margin-top: 0;
     padding: 0;
 
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 
     font-weight: normal;
     text-transform: capitalize;
@@ -402,13 +402,12 @@ table tr td .photo_instructor span {
 
 table tr td .box {
     width: 500px;
-    display: grid;
-    gap: 5px;
-    grid-template-columns: repeat(4, 1fr);
 }
 
 table tr td .service {
-    padding: 8px 0;
+    margin: 4px 0;
+    padding: 8px 16px;
+    display: inline-block;
     border-radius: 16px;
     text-align: center;
     text-transform: capitalize;
@@ -416,17 +415,19 @@ table tr td .service {
     font-weight: bold;
     color: #707070;
     background-color: var(--tertiary-color);
+    box-sizing: border-box;
 }
 
 .action_button a {
-    width: 50px;
-    height: 40px;
-    line-height: 40px;
+    width: 40px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 5px;
 
     display: block;
     color: #fff;
-    font-size: 16px;
-    border-radius: 8px;
+    font-size: 14px;
+    border-radius: 4px;
 }
 
 /* ===================== MODAL ===================== */
