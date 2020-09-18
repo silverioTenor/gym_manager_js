@@ -337,17 +337,92 @@ button[type=submit] {
     margin-left: 5px;
     padding-left: 10px;
     outline: none;
-    border-bottom: 2px solid #555;
+    border-bottom: 1px solid #555;
     box-sizing: border-box;
 }
 
 .filter input:focus,
 .filter input:hover {
-    border-bottom: 2px solid var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
 }
 
 /* ===================== TABLE ===================== */
 
 .table {
+    width: 100%;
     margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse !important;
+}
+
+table tr th {
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+table tr th {
+    background-color: #fff;
+    border-bottom: 2px solid #555;
+}
+
+th, td {
+    padding: 10px 16px;
+    text-align: start;
+}
+
+table tr td {
+    border-bottom: 1px solid #c2c2c2;
+}
+
+table tr td .photo_instructor {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+}
+
+table tr td .photo_instructor img {
+    width: 70px;
+    height: 70px;
+
+    object-fit: cover;
+    border-radius: 50px;
+    border: 3px solid #fff;
+    box-shadow: 2px 2px 3px #afafaf;
+}
+
+table tr td .photo_instructor span {
+    align-self: center;
+    font-size: 16px;
+}
+
+table tr td .box {
+    width: 500px;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+table tr td .service {
+    padding: 8px 0;
+    border-radius: 16px;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: bold;
+    color: #707070;
+    background-color: var(--tertiary-color);
+}
+
+.action_button a {
+    width: 50px;
+    height: 40px;
+    line-height: 40px;
+
+    display: block;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 8px;
 }

@@ -4,7 +4,20 @@ const { age, date } = require('../utils');
 
 // INDEX
 exports.index = (req, res) => {
-    res.render("instructors/index");
+    let instructorsList = [];
+    let temp = [];
+    temp = data.instructors;
+
+    for (const i in data.instructors) {
+        instructorsList[i] = {
+            ...temp[i],
+            avatar_url: temp[i].avatar_url,
+            name: temp[i].name,
+            services: temp[i].services.split(","),
+            link: `/instructors/${temp[i].id}`
+        }
+    }
+    res.render("instructors/index", { instructorsList });
 };
 
 // CREATE

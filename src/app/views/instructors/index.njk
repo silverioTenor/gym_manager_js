@@ -17,8 +17,8 @@
                     <th>Serviços</th>
                     <th>Perfil</th>
                 </tr>
-                {% if instructors %}
-                    {% for instructor in instructors %}
+                {% if instructorsList %}
+                    {% for instructor in instructorsList %}
                         <tr>
                             <td>
                                 <div class="photo_instructor">
@@ -27,18 +27,20 @@
                                 </div>
                             </td>
                             <td>
-                                {% for services in instructor.services %}
-                                    <span>{{ services }}</span>
-                                {% endfor %}
+                                <div class="box">
+                                    {% for services in instructor.services %}
+                                        <span class="service">{{ services }}</span>
+                                    {% endfor %}
+                                </div>
                             </td>
                             <td>
                                 <div class="action_button">
-                                    <button>Ver</button>
+                                    <a class="button" href="{{ instructor.link }}">Ver</a>
                                 </div>
                             </td>
                         </tr>
                     {% endfor %}
-                {% elseif  not instructors %}
+                {% elseif  not instructorsList %}
                     <tr>
                         <td colspan="3">
                             <span class="not_instructor">Nenhum instrutor(a) encontrado(a)</span>
