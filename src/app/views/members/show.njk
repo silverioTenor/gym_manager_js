@@ -1,0 +1,75 @@
+{% extends '../layout.njk' %}
+
+{% block head %}
+    <title>{{ member.name }}</title>
+{% endblock head %}
+
+{% block content %}
+
+    {% if member.avatar_url %}
+        <style>
+            .avatar {
+                background: url("{{ member.avatar_url }}") no-repeat;
+                background-position: center;
+                background-size: cover;
+            }
+        </style>
+    {% endif %}
+
+    <div class="card">
+        <section class="avatar"></section>
+
+        <section class="details">
+            <h3>Detalhes</h3>
+
+            <div class="item">
+                <div>Instrutor</div>
+                <div>{{ member.name }}</div>
+            </div>
+
+            <div class="item">
+                <div>Idade</div>
+                <div>{{ member.birth }}</div>
+            </div>
+
+            <div class="item">
+                <div>Sexo</div>
+                <div>{{ 'Masculino' if member.gender == 'masc' else 'Feminino' }}</div>
+            </div>
+
+            <div class="item">
+                <div>Acompanhamento</div>
+                <div>
+                    {% for service in member.services %}
+                        <span>{{ service }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="item">
+                <div>Desde</div>
+                <div>{{ member.created_at }}</div>
+            </div>
+
+            <div class="options">
+                <a href="/members/{{ member.id }}/update" class="button button_redirect">Editar</a>
+
+                <a class="button button_redirect delete">Deletar</a>
+            </div>
+        </section>
+    </div>
+
+    <div class="modalOverride">
+        <div class="modal">
+            <p>Esta ação não pode ser desfeita. Deseja continuar?</p>
+
+            <div class="decision">
+                <form method="POST" action="/members?_method=DELETE">
+                    <input type="hidden" name="id" value="{{ member.id }}"/>
+                    <button type="submit" class="button">Sim</button>
+                </form>
+                <button class="button button_redirect cancel">Não</button>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

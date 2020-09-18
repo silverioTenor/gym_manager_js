@@ -1,0 +1,82 @@
+<div class="item">
+    <div>Avatar URL</div>
+    <div>
+        <input 
+            type="text" 
+            name="avatar_url" 
+            placeholder="http://"
+            {% if members.avatar_url %}
+                value="{{ members.avatar_url }}"
+            {% endif %}
+        />
+    </div>
+</div>
+
+<div class="item">
+    <div>Instrutor</div>
+    <div>
+        <input 
+            type="text" 
+            name="name" 
+            placeholder="Nome do instrutor"
+            {% if members.name %}
+                value="{{ members.name }}"
+            {% endif %}
+        />
+    </div>
+</div>
+
+<div class="item">
+    <div>Data de nascimento</div>
+    <div>
+        <input 
+            type="date" 
+            name="birth"
+            {% if members.birth %}
+                value="{{ members.birth }}"
+            {% endif %}
+        />
+    </div>
+</div>
+
+<div class="item">
+    <div>Sexo</div>
+    <div>
+        <span>
+            <input 
+                type="radio" 
+                name="gender" 
+                value="masc"
+                {% if members.gender == "masc" %}
+                    checked
+                {% endif %}
+            /> Masculino
+        </span>
+        <span>
+            <input 
+                type="radio" 
+                name="gender" 
+                value="fem"
+                {% if members.gender == "fem" %}
+                    checked
+                {% endif %}
+            /> Feminino
+        </span>
+    </div>
+</div>
+
+<div class="item">
+    <div>Área de atuação</div>
+    <div>
+        <input 
+            type="text" 
+            name="services" 
+            placeholder="Separe por vírgula as áreas de atuação"
+            {% if members.avatar_url %}
+                value="{{ members.services }}"
+            {% endif %}
+            />
+    </div>
+</div>
+
+<button type="submit" class="button">Salvar dados</button>

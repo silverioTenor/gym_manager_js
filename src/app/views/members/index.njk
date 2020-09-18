@@ -1,0 +1,54 @@
+{% extends '../layout.njk' %}
+
+{% block content %}
+    <div class="card page_index">
+        <section class="search">
+            <a href="/members/create" class="button">Novo membro</a>
+
+            <div class="filter">
+                <button type="submit" class="button">Pesquisar</button>
+                <input type="text" name="filter" placeholder="Instrutor(a)"/>
+            </div>
+        </section>
+        <section class="table">
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>Serviços</th>
+                    <th>Perfil</th>
+                </tr>
+                {% if instructorsList %}
+                    {% for member in instructorsList %}
+                        <tr>
+                            <td>
+                                <div class="photo_instructor">
+                                    <img src="{{ member.avatar_url }}" alt="instrutor(a) - {{ member.name }}"/>
+                                    <span>{{ member.name }}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="box">
+                                    {% for services in member.services %}
+                                        <span class="service">{{ services }}</span>
+                                    {% endfor %}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="action_button">
+                                    <a class="button" href="{{ member.link }}">Ver</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% elseif  not instructorsList %}
+                    <tr>
+                        <td colspan="3">
+                            <span class="not_instructor">Nenhum instrutor(a) encontrado(a)</span>
+                        </td>
+                    </tr>
+                {% endif %}
+            </table>
+        </section>
+        <section class="pagination"></section>
+    </div>
+{% endblock content %}
