@@ -54,8 +54,21 @@
             <div class="options">
                 <a href="/instructors/{{ instructor.id }}/update" class="button button_redirect">Editar</a>
 
-                <a href="#" class="button button_redirect delete">Deletar</a>
+                <a class="button button_redirect delete">Deletar</a>
             </div>
         </section>
+    </div>
+
+    <div class="modalOverride">
+        <div class="modal">
+            <p>Esta ação não pode ser desfeita. Deseja continuar?</p>
+
+            <div class="decision">
+                <form method="POST" action="/instructors?_method=DELETE">
+                    <button type="submit" class="button">Sim</button>
+                </form>
+                <button class="button button_redirect cancel">Não</button>
+            </div>
+        </div>
     </div>
 {% endblock content %}
