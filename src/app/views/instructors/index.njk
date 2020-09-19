@@ -17,7 +17,7 @@
                     <th>Serviços</th>
                     <th>Perfil</th>
                 </tr>
-                {% if instructorsList %}
+                {% if instructorsList.length > 0 %}
                     {% for instructor in instructorsList %}
                         <tr>
                             <td>
@@ -40,7 +40,7 @@
                             </td>
                         </tr>
                     {% endfor %}
-                {% elseif  not instructorsList %}
+                {% elseif instructorsList.length <= 0 %}
                     <tr>
                         <td colspan="3">
                             <span class="not_instructor">Nenhum instrutor(a) encontrado(a)</span>
