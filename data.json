@@ -36,5 +36,17 @@
       "services": "Musculação, Calistenia, Música, Saúde, Esportes, Festas, Rolê",
       "created_at": 1600465298267
     }
+  ],
+  "members": [
+    {
+      "id": 1,
+      "avatar_url": "https://lh3.googleusercontent.com/DJ1MuWt2QsV0D_iE-EI4zMMb_hSd9TmQFBBK8bKsEz7FZKJQiY5-f9WGVydAdaDAWcjguEAR57dtnjlqN3M8PixwAHJ3rWWmUNkjoy197c19PUSlwLQbqY5lDWnQY9fP_pt6wM0xHGo2hR-IAleOkspSqKbxZZ6xrtOBN16IIGxZWC8HmZqZISq4-wXTd1iIW-bkB77sqwwAfsN0_QV79wTdMRnyetcGkO-8I9bLF4mRR12dz7SA0CLQS21oFWzN1myb9IlbvUYTPVkjUxkBVh1PMrfmoZxe6FnFkFCJwsf7M-nbqvzbrV7Way1jLVtcLf2vIvC09gaiXk3le7ZeKvOIX9PD39KqIfIbHvWSb-U6cGTUjKL1FXZjKEOyw2DreFklhuYVNdbdEgbMZCtKRjD5Bq0iyIhXPreBJx32m7M2qrWFIsg7dLs7CoTvqf9TsT9DLOt8ZDIevpOX0_X0DhSRrSqwgKB75tvgsGepd47ULH8DSNWvDUUQU9meOSeAfFw3Il2qABRhkPvZP7FaaPwAEt6PH6D19VRW61ovS9cZCit0NKLis4iqMQplMtBh9csCNWo9BWbDpuknBfHYfXeL0dgax7LcBqybWOUMqGKUr1AZdgTE1KIW2dsIEcZta2iznaGdfzZQfR56MeANmLkZo91fLM7epesc0u0_T_3x2ldncpUSaY6h=w499-h665-no",
+      "name": "Rodrigo",
+      "email": "rodrigo@gmail.com",
+      "birth": 576806400000,
+      "gender": "masc",
+      "blood": "O2",
+      "created_at": 1600477137543
+    }
   ]
 }

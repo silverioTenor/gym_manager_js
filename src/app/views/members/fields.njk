@@ -5,22 +5,36 @@
             type="text" 
             name="avatar_url" 
             placeholder="http://"
-            {% if members.avatar_url %}
-                value="{{ members.avatar_url }}"
+            {% if member.avatar_url %}
+                value="{{ member.avatar_url }}"
             {% endif %}
         />
     </div>
 </div>
 
 <div class="item">
-    <div>Instrutor</div>
+    <div>Nome</div>
     <div>
         <input 
             type="text" 
             name="name" 
-            placeholder="Nome do instrutor"
-            {% if members.name %}
-                value="{{ members.name }}"
+            placeholder="Nome do membro"
+            {% if member.name %}
+                value="{{ member.name }}"
+            {% endif %}
+        />
+    </div>
+</div>
+
+<div class="item">
+    <div>E-mail</div>
+    <div>
+        <input 
+            type="text" 
+            name="email" 
+            placeholder="membro@exemplo.com"
+            {% if member.email %}
+                value="{{ member.email }}"
             {% endif %}
         />
     </div>
@@ -32,8 +46,8 @@
         <input 
             type="date" 
             name="birth"
-            {% if members.birth %}
-                value="{{ members.birth }}"
+            {% if member.birth %}
+                value="{{ member.birth }}"
             {% endif %}
         />
     </div>
@@ -47,7 +61,7 @@
                 type="radio" 
                 name="gender" 
                 value="masc"
-                {% if members.gender == "masc" %}
+                {% if member.gender == "masc" %}
                     checked
                 {% endif %}
             /> Masculino
@@ -57,7 +71,7 @@
                 type="radio" 
                 name="gender" 
                 value="fem"
-                {% if members.gender == "fem" %}
+                {% if member.gender == "fem" %}
                     checked
                 {% endif %}
             /> Feminino
@@ -66,16 +80,22 @@
 </div>
 
 <div class="item">
-    <div>Área de atuação</div>
+    <div>Tipo sanguíneo</div>
     <div>
-        <input 
-            type="text" 
-            name="services" 
-            placeholder="Separe por vírgula as áreas de atuação"
-            {% if members.avatar_url %}
-                value="{{ members.services }}"
+        <select name="blood">
+            {% if member.blood %}
+                <option value="{{ member.blood }}" selected>{{ member.type_blood }}</option>
             {% endif %}
-            />
+            <option value="">Selecione...</option>
+            <option value="A1">A+</option>
+            <option value="A2">A-</option>
+            <option value="B1">B+</option>
+            <option value="B2">B-</option>
+            <option value="O1">O+</option>
+            <option value="O2">O-</option>
+            <option value="AB1">AB+</option>
+            <option value="AB2">AB-</option>
+        </select>
     </div>
 </div>
 

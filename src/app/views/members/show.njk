@@ -38,16 +38,12 @@
             </div>
 
             <div class="item">
-                <div>Acompanhamento</div>
-                <div>
-                    {% for service in member.services %}
-                        <span>{{ service }}</span>
-                    {% endfor %}
-                </div>
+                <div>Tipo sanguíneo</div>
+                <div>{{ member.type_blood }}</div>
             </div>
 
             <div class="item">
-                <div>Desde</div>
+                <div>Ativo desde</div>
                 <div>{{ member.created_at }}</div>
             </div>
 

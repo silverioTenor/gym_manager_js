@@ -24,5 +24,16 @@ module.exports = {
             iso: `${year}-${month}-${day}`,
             br: `${day}/${month}/${year}`
         };
+    },
+    typeBlood: (type) => {
+        const options1 = ["A1", "A2", "B1", "B2", "AB1", "AB2", "O1", "O2"];
+        const options2 = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+        let selected = "";
+
+        for (const op in options1) {
+            if (type == options1[op]) {
+                return selected = options2[op];
+            }
+        }
     }
 }

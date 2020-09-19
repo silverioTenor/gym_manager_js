@@ -7,31 +7,27 @@
 
             <div class="filter">
                 <button type="submit" class="button">Pesquisar</button>
-                <input type="text" name="filter" placeholder="Instrutor(a)"/>
+                <input type="text" name="filter" placeholder="Membro"/>
             </div>
         </section>
         <section class="table">
             <table>
                 <tr>
                     <th>Nome</th>
-                    <th>Serviços</th>
+                    <th>E-mail</th>
                     <th>Perfil</th>
                 </tr>
-                {% if instructorsList %}
-                    {% for member in instructorsList %}
+                {% if membersList.length > 0 %}
+                    {% for member in membersList %}
                         <tr>
                             <td>
                                 <div class="photo_instructor">
-                                    <img src="{{ member.avatar_url }}" alt="instrutor(a) - {{ member.name }}"/>
+                                    <img src="{{ member.avatar_url }}" alt="membro - {{ member.name }}"/>
                                     <span>{{ member.name }}</span>
                                 </div>
                             </td>
                             <td>
-                                <div class="box">
-                                    {% for services in member.services %}
-                                        <span class="service">{{ services }}</span>
-                                    {% endfor %}
-                                </div>
+                                <div class="service low">{{ member.email }}</div>
                             </td>
                             <td>
                                 <div class="action_button">
@@ -40,10 +36,10 @@
                             </td>
                         </tr>
                     {% endfor %}
-                {% elseif  not instructorsList %}
+                {% elseif  membersList.length <= 0 %}
                     <tr>
                         <td colspan="3">
-                            <span class="not_instructor">Nenhum instrutor(a) encontrado(a)</span>
+                            <span class="not_instructor">Nenhum membro encontrado</span>
                         </td>
                     </tr>
                 {% endif %}

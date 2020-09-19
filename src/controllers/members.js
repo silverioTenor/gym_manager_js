@@ -1,23 +1,20 @@
 const fs = require('fs');
 const data = require('../../data.json');
-const { age, date } = require('../utils');
+const { age, date, typeBlood } = require('../utils');
 
 // INDEX
 exports.index = (req, res) => {
-    let instructorsList = [];
+    let membersList = [];
     let temp = [];
     temp = data.members;
 
     for (const i in data.members) {
-        instructorsList[i] = {
+        membersList[i] = {
             ...temp[i],
-            avatar_url: temp[i].avatar_url,
-            name: temp[i].name,
-            services: temp[i].services.split(","),
             link: `/members/${temp[i].id}`
         }
     }
-    res.render("members/index", { instructorsList });
+    res.render("members/index", { membersList });
 };
 
 // CREATE
@@ -49,9 +46,10 @@ exports.post = (req, res) => {
     let {
         avatar_url,
         name,
+        email,
         birth,
         gender,
-        services
+        blood
     } = req.body;
 
     birth = Date.parse(birth);
@@ -61,9 +59,10 @@ exports.post = (req, res) => {
         id,
         avatar_url,
         name,
+        email,
         birth,
         gender,
-        services,
+        blood,
         created_at
     });
 
@@ -76,20 +75,20 @@ exports.post = (req, res) => {
 exports.show = (req, res) => {
     const { id } = req.params;
 
-    const foundInstructor = data.members.find(member => {
+    const foundMember = data.members.find(member => {
         return member.id == id;
     });
 
-    if (!foundInstructor) return res.send("Instructor not found!");
+    if (!foundMember) return res.send("Member not found!");
 
     const member = {
-        ...foundInstructor,
-        birth: `${age(foundInstructor.birth)} anos`,
-        services: foundInstructor.services.split(","),
-        created_at: date(foundInstructor.created_at).br
+        ...foundMember,
+        birth: `${age(foundMember.birth)} anos`,
+        type_blood: typeBlood(foundMember.blood),
+        created_at: date(foundMember.created_at).br
     }
 
-    // return res.send(foundInstructor);
+    // return res.send(foundMember);
     return res.render("members/show", { member });
 }
 
@@ -97,16 +96,16 @@ exports.show = (req, res) => {
 exports.update = (req, res) => {
     const { id } = req.params;
 
-    const foundInstructor = data.members.find(member => {
+    const foundMember = data.members.find(member => {
         return member.id == id;
     });
 
-    if (!foundInstructor) return res.send("Instructor not found!");
+    if (!foundMember) return res.send("Member not found!");
 
     const member = {
-        ...foundInstructor,
-        birth: date(foundInstructor.birth).iso,
-        services: foundInstructor.services.replace()
+        ...foundMember,
+        birth: date(foundMember.birth).iso,
+        type_blood: typeBlood(foundMember.blood)
     }
     return res.render("members/update", { member });
 }
@@ -116,20 +115,20 @@ exports.put = (req, res) => {
     const { id } = req.body;
     let index = 0;
 
-    const foundInstructor = data.members.find((member, foundIndex) => {
+    const foundMember = data.members.find((member, foundIndex) => {
         if (member.id == id) {
             index = foundIndex;
             return true;
         }
     });
 
-    if (!foundInstructor) res.send("Instructor not found!");
+    if (!foundMember) res.send("Member not found!");
 
     const member = {
-        ...foundInstructor,
+        ...foundMember,
         ...req.body,
         id: Number(req.body.id),
-        birth: Date.parse(req.body.birth)
+        birth: Date.parse(req.body.birth),
     };
 
     data.members[index] = member;
@@ -143,13 +142,13 @@ exports.put = (req, res) => {
 exports.delete = (req, res) => {
     const { id } = req.body;
 
-    const filterdInstructor = data.members.filter(member => {
+    const filteredMember = data.members.filter(member => {
         return member.id != id;
     });
 
-    if (!filterdInstructor) return res.send("Search error!");
+    if (!filteredMember) return res.send("Search error!");
 
-    data.members = filterdInstructor;
+    data.members = filteredMember;
 
     fs.writeFile("data.json", JSON.stringify(data, null, 2), err => {
         return err ? res.send("File write error!") : res.redirect("/members");

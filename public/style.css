@@ -244,6 +244,16 @@ input[type="text"] {
     width: 100%;
 }
 
+select option {
+    text-align: center;
+}
+
+select {
+    width: 100%;
+    /* background-image: linear-gradient(to top #ccc, #555) !important; */
+}
+
+select,
 input[type="date"],
 input[type="text"] {
     color: #555;
@@ -255,8 +265,10 @@ input[type="radio"] {
     margin-right: 5px;
 }
 
+/* option, */
 input::placeholder {
     font-size: 16px;
+    font-weight: bold;
 }
 
 /* ===================== GENERALS CLASSES ===================== */
@@ -356,6 +368,7 @@ button[type="submit"] {
 
 table {
     width: 100%;
+    position: relative;
     border-spacing: 0;
     border-collapse: collapse !important;
 }
@@ -409,6 +422,10 @@ table tr td .box {
     max-width: 500px;
 }
 
+table tr td .service.low {
+    text-transform: lowercase !important;
+}
+
 table tr td .service {
     margin: 4px 0;
     padding: 8px 16px;
@@ -440,6 +457,17 @@ table tr td .service + .service {
     font-size: 14px;
     font-weight: bold;
     border-radius: 4px;
+}
+
+.table table tr td .not_instructor {
+    width: 100%;
+    height: 300px;
+    
+    margin-top: 150px;
+    display: block;
+
+    text-align: center;
+    font-size: 16px;
 }
 
 /* ===================== MODAL ===================== */
