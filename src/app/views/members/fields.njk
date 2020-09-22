@@ -99,4 +99,30 @@
     </div>
 </div>
 
+<div class="item">
+    <div>Peso (kg)</div>
+    <div>
+        <input 
+            type="text" 
+            name="weight"
+            {% if member.weight %}
+                value="{{ member.weight }}"
+            {% endif %}
+        />
+    </div>
+</div>
+
+<div class="item">
+    <div>Altura</div>
+    <div>
+        <input 
+            type="text" 
+            name="height"
+            {% if member.height %}
+                value="{{ member.height }}"
+            {% endif %}
+        />
+    </div>
+</div>
+
 <button type="submit" class="button">Salvar dados</button>
