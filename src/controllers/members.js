@@ -49,7 +49,9 @@ exports.post = (req, res) => {
         email,
         birth,
         gender,
-        blood
+        blood,
+        weight,
+        height
     } = req.body;
 
     birth = Date.parse(birth);
@@ -63,6 +65,8 @@ exports.post = (req, res) => {
         birth,
         gender,
         blood,
+        weight,
+        height,
         created_at
     });
 
