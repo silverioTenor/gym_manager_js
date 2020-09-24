@@ -1,3 +1,4 @@
+const member = require('../models/members.dao');
 const { age, date, typeBlood } = require('../../lib/utils');
 
 module.exports = {
