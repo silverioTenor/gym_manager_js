@@ -12,7 +12,7 @@ module.exports = {
                     services: instructors[i].services.split(",")
                 }
             }
-            
+
             res.render("instructors/index", { instructorsList });
         });
 
@@ -48,19 +48,29 @@ module.exports = {
     show(req, res) {
         const { id } = req.params;
 
-        Instructor.get(id, instructors => {
-            
-            const instructor = {
-                ...instructors,
-                birth: `${age(instructors.birth)} anos`,
-                services: instructors.services.split(","),
-                created_at: date(instructors.created_at).br
+        Instructor.get(id, instructor => {
+
+            const inst = {
+                ...instructor,
+                birth: `${age(instructor.birth)} anos`,
+                services: instructor.services.split(","),
+                created_at: date(instructor.created_at).br
             }
-            return res.render("instructors/show", { instructor });
+            return res.render("instructors/show", { instructor: inst });
         });
     },
     update(req, res) {
-        return res.render("instructors/update", { instructor });
+        const { id } = req.params;
+
+        Instructor.get(id, instructor => {
+
+            const inst = {
+                ...instructor,
+                birth: date(instructor.birth).iso
+            }
+
+            return res.render("instructors/update", { instructor: inst });
+        });
     },
     put(req, res) {
         const keys = Object.keys(req.body);
@@ -70,6 +80,27 @@ module.exports = {
                 return res.send("Please, fill all the fields!");
             }
         }
+
+        let { id, avatar_url, name, gender, services, birth } = req.body;
+
+        const data = [
+            id,
+            avatar_url,
+            name,
+            birth = date(birth).iso,
+            gender,
+            services
+        ];
+
+        Instructor.edit(data, instructor => {
+            return res.redirect(`/instructors/${instructor.id}`);
+        });
     },
-    delete(req, res) { }
+    delete(req, res) {
+        const { id } = req.body;
+
+        Instructor.remove(id);
+
+        return res.redirect("/instructors");
+    }
 }
