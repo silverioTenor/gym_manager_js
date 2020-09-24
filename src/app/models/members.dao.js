@@ -5,7 +5,7 @@ module.exports = {
         const sql = `SELECT * FROM members WHERE id = $1;`;
 
         db.query(sql, [id], (err, results) => {
-            if (err) { throw `Unexpected error: ${err}` };
+            if (err) throw `Unexpected error: ${err}`;
 
             callback(results.rows[0]);
         });
@@ -17,7 +17,7 @@ module.exports = {
         `;
 
         db.query(sql, null, (err, results) => {
-            if (err) { throw `Unexpected error: ${err}` };
+            if (err) throw `Unexpected error: ${err}`;
 
             callback(results.rows);
         });
@@ -29,7 +29,7 @@ module.exports = {
         `;
 
         db.query(sql, values, (err, results) => {
-            if (err) { throw `Unexpected error: ${err}` };
+            if (err) throw `Unexpected error: ${err}`;
 
             return results.rows[0];
         });
@@ -42,7 +42,7 @@ module.exports = {
         `;
 
         db.query(sql, values, (err, results) => {
-            if (err) { throw `Unexpected error: ${err}` };
+            if (err) throw `Unexpected error: ${err}`;
 
             return callback(results.rows[0]);
         });
@@ -51,7 +51,7 @@ module.exports = {
         const sql = `DELETE FROM members WHERE id = $1`;
 
         db.query(sql, [id], err => {
-            if (err) {throw `Unexpected error: ${err}`}
+            if (err)throw `Unexpected error: ${err}`;
         });
     }
 }

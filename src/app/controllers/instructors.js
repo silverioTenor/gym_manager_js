@@ -41,9 +41,9 @@ module.exports = {
             created_at = date(Date.now()).iso
         ]
 
-        const id = Instructor.save(data);
-
-        return res.redirect(`/instructors/${id}`);
+        Instructor.save(data, instructor => {    
+            return res.redirect(`/instructors/${instructor.id}`);
+        });
     },
     show(req, res) {
         const { id } = req.params;
