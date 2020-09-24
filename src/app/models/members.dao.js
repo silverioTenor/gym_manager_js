@@ -31,7 +31,7 @@ module.exports = {
         db.query(sql, values, (err, results) => {
             if (err) throw `Unexpected error: ${err}`;
 
-            return results.rows[0];
+            return callback(results.rows[0]);
         });
     },
     edit(values, callback) {
