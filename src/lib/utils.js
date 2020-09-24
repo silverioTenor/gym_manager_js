@@ -1,5 +1,5 @@
 module.exports = {
-    age: (timestamp) => {
+    age(timestamp) {
         const today = new Date();
         const birthDate = new Date(timestamp);
 
@@ -13,7 +13,7 @@ module.exports = {
 
         return age;
     },
-    date: (timestamp) => {
+    date(timestamp) {
         const date = new Date(timestamp);
 
         const day = `0${date.getUTCDate()}`.slice(-2);
@@ -25,7 +25,7 @@ module.exports = {
             br: `${day}/${month}/${year}`
         };
     },
-    typeBlood: (type) => {
+    typeBlood(type) {
         const options1 = ["A1", "A2", "B1", "B2", "AB1", "AB2", "O1", "O2"];
         const options2 = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
         let selected = "";
