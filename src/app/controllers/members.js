@@ -6,10 +6,15 @@ module.exports = {
         Member.getAll(members => {
             res.render("members/index", { membersList: members });
         });
-
     },
     create(req, res) {
-        return res.render("members/create");
+        Member.getInstructors(instructors => {
+            const member = [];
+            member.instructors = instructors;
+            member.types = typeBlood();
+
+            return res.render("members/create", { member });
+        });
     },
     post(req, res) {
         const keys = Object.keys(req.body);
@@ -20,7 +25,17 @@ module.exports = {
             }
         }
 
-        let { avatar_url, name, email, birth, gender, blood, weight, height } = req.body;
+        let {
+            avatar_url,
+            name,
+            email,
+            birth,
+            gender,
+            blood,
+            weight,
+            height,
+            my_instructor
+        } = req.body;
 
         const data = [
             avatar_url,
@@ -31,23 +46,32 @@ module.exports = {
             blood,
             weight,
             height,
+            my_instructor,
             created_at = date(Date.now()).iso
         ]
 
         Member.save(data, member => {
             return res.redirect(`/members/${member.id}`);
         });
-
     },
     show(req, res) {
         const { id } = req.params;
 
         Member.get(id, member => {
+            // Tratamento do tipo sanguíneo vindo do banco
+            const types = typeBlood();
+            let type_blood = "";
+
+            for (const t in types) {
+                if (types[t].back == member.blood) {
+                    type_blood = types[t].front;
+                }
+            }
 
             const inst = {
                 ...member,
                 birth: `${age(member.birth)} anos`,
-                type_blood: typeBlood(member.blood),
+                type_blood,
                 created_at: date(member.created_at).br
             }
             return res.render("members/show", { member: inst });
@@ -56,12 +80,20 @@ module.exports = {
     update(req, res) {
         const { id } = req.params;
 
+        const inn = []
+        Member.getInstructors(instructors => {
+            for (const i in instructors) {
+                inn[i] = instructors[i];
+            }
+        });
+
         Member.get(id, member => {
 
             const inst = {
                 ...member,
                 birth: date(member.birth).iso,
-                type_blood: typeBlood(member.blood)
+                instructors: inn,
+                types: typeBlood()
             }
 
             return res.render("members/update", { member: inst });
@@ -76,7 +108,18 @@ module.exports = {
             }
         }
 
-        let { id, avatar_url, name, email, birth, gender, blood, weight, height } = req.body;
+        let {
+            id,
+            avatar_url,
+            name,
+            email,
+            birth,
+            gender,
+            blood,
+            weight,
+            height,
+            my_instructor
+        } = req.body;
 
         const data = [
             id,
@@ -87,7 +130,8 @@ module.exports = {
             gender,
             blood,
             weight,
-            height
+            height,
+            my_instructor
         ];
 
         Member.edit(data, member => {

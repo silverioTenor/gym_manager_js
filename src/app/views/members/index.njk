@@ -15,6 +15,7 @@
                 <tr>
                     <th>Nome</th>
                     <th>E-mail</th>
+                    <th>Instrutor</th>
                     <th>Perfil</th>
                 </tr>
                 {% if membersList.length > 0 %}
@@ -28,6 +29,9 @@
                             </td>
                             <td>
                                 <div class="service low">{{ member.email }}</div>
+                            </td>
+                            <td>
+                                <div>{{ member.instructor }}</div>
                             </td>
                             <td>
                                 <div class="action_button">
