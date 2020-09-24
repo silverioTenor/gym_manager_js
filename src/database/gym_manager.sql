@@ -18,5 +18,8 @@ CREATE TABLE "members" (
   "blood" text NOT NULL,
   "weight" integer NOT NULL,
   "height" integer NOT NULL,
+  "instructor_id" integer NOT NULL,
   "created_at" timestamp NOT NULL
 );
+
+ALTER TABLE "members" ADD FOREIGN KEY ("instructor_id") REFERENCES "instructors" ("id");
