@@ -12,7 +12,9 @@ module.exports = {
     },
     getAll(callback) {
         const sql = `
-            SELECT id, avatar_url, name, services FROM instructors 
+            SELECT id, avatar_url, name, services, (
+                SELECT COUNT(instructor_id) AS total_members FROM members
+            ) FROM instructors 
             ORDER BY id;
         `;
 
