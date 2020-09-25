@@ -27,7 +27,28 @@ module.exports = {
         db.query(sql, null, (err, results) => {
             if (err) throw `Unexpected error: ${err}`;
 
-            callback(results.rows);
+            return callback(results.rows);
+        });
+    },
+    getBy(filter, callback) {
+        const sql = `
+            SELECT 
+                instructors.id, 
+                instructors.avatar_url, 
+                instructors.name, 
+                instructors.services, 
+                COUNT(members.*) AS total_members
+            FROM instructors 
+            LEFT JOIN members ON (members.instructor_id = instructors.id)
+            WHERE instructors.name ILIKE '%${filter}%' OR instructors.services ILIKE '%${filter}%'
+            GROUP BY instructors.id
+            ORDER BY instructors.id
+        `;
+
+        db.query(sql, null, (err, results) => {
+            if (err) throw `Unexpected error: ${err}`;
+
+            return callback(results.rows);
         });
     },
     save(values, callback) {

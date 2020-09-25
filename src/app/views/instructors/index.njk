@@ -5,10 +5,10 @@
         <section class="search">
             <a href="/instructors/create" class="button">Novo instrutor</a>
 
-            <div class="filter">
+            <form method="GET" action="/instructors" class="filter">
                 <button type="submit" class="button">Pesquisar</button>
-                <input type="text" name="filter" placeholder="Instrutor(a)"/>
-            </div>
+                <input type="text" name="filter" placeholder="Instrutor(a) ou serviço"/>
+            </form>
         </section>
         <section class="table">
             <table>

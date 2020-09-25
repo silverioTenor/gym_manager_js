@@ -3,18 +3,35 @@ const { age, date } = require('../../lib/utils');
 
 module.exports = {
     index(req, res) {
-        Instructor.getAll(instructors => {
-            const instructorsList = [];
+        const { filter } = req.query;
 
-            for (const i in instructors) {
-                instructorsList[i] = {
-                    ...instructors[i],
-                    services: instructors[i].services.split(",")
+        if (filter) {
+            Instructor.getBy(filter, instructors => {
+                const instructorsList = [];
+
+                for (const i in instructors) {
+                    instructorsList[i] = {
+                        ...instructors[i],
+                        services: instructors[i].services.split(",")
+                    }
                 }
-            }
 
-            res.render("instructors/index", { instructorsList });
-        });
+                res.render("instructors/index", { instructorsList });
+            });
+        } else {
+            Instructor.getAll(instructors => {
+                const instructorsList = [];
+
+                for (const i in instructors) {
+                    instructorsList[i] = {
+                        ...instructors[i],
+                        services: instructors[i].services.split(",")
+                    }
+                }
+
+                res.render("instructors/index", { instructorsList });
+            });
+        }
 
     },
     create(req, res) {
@@ -41,7 +58,7 @@ module.exports = {
             created_at = date(Date.now()).iso
         ]
 
-        Instructor.save(data, instructor => {    
+        Instructor.save(data, instructor => {
             return res.redirect(`/instructors/${instructor.id}`);
         });
     },
