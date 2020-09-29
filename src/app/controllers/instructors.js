@@ -3,10 +3,18 @@ const { age, date } = require('../../lib/utils');
 
 module.exports = {
     index(req, res) {
-        const { filter } = req.query;
+        let { filter, page, limit } = req.query;
 
-        if (filter) {
-            Instructor.getBy(filter, instructors => {
+        page = page || 1;
+        limit = limit || 2;
+        let offset = limit * (page - 1);
+
+        const params = {
+            filter,
+            page,
+            limit,
+            offset,
+            callback(instructors) {
                 const instructorsList = [];
 
                 for (const i in instructors) {
@@ -17,22 +25,10 @@ module.exports = {
                 }
 
                 res.render("instructors/index", { instructorsList });
-            });
-        } else {
-            Instructor.getAll(instructors => {
-                const instructorsList = [];
-
-                for (const i in instructors) {
-                    instructorsList[i] = {
-                        ...instructors[i],
-                        services: instructors[i].services.split(",")
-                    }
-                }
-
-                res.render("instructors/index", { instructorsList });
-            });
+            }
         }
 
+        Instructor.paginate(params);
     },
     create(req, res) {
         return res.render("instructors/create");
@@ -64,8 +60,7 @@ module.exports = {
     },
     show(req, res) {
         const { id } = req.params;
-
-        console.log(id);
+        
         Instructor.get(id, instructor => {
 
             const inst = {

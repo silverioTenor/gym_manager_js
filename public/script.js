@@ -1,4 +1,8 @@
+/* ============================================================ */
 /* ======================= BUTTON ASIDE ======================= */
+/* ============================================================ */
+
+const { paginate } = require("../src/app/models/instructor.dao");
 
 if (document.querySelector('#toggle')) {
     const currentPage = location.pathname;
@@ -29,7 +33,9 @@ if (document.querySelector('#toggle')) {
     });
 }
 
+/* ============================================================= */
 /* =========================== MODAL =========================== */
+/* ============================================================= */
 
 if (document.querySelector('.options')) {
     const modalOverride = document.querySelector('.modalOverride');
@@ -41,4 +47,35 @@ if (document.querySelector('.options')) {
             modalOverride.classList.remove('active_modal');
         });
     });
+}
+
+/* ============================================================= */
+/* ========================= PAGINATION ======================== */
+/* ============================================================= */
+
+if (document.querySelector('.pagination')) {
+
+    function paginate(totalPages, selectedPages) {
+        let pages = [],
+            oldPage;
+
+        for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
+            
+            const firstAndLastPage = currentPage == 1 || currentPage == totalPages;
+            const pagesBeforeSelectedPage = currentPage >= selectedPages - 2;
+            const pagesAfterSelectedPage = currentPage <= selectedPages + 2;
+
+            if (firstAndLastPage || pagesBeforeSelectedPage && pagesAfterSelectedPage) {
+
+                if (oldPage && currentPage - oldPage > 2) {
+                    pages.push("...");
+                }
+                else if (oldPage && currentPage - oldPage == 2) {
+                    pages.push(currentPage - 1);
+                }
+
+                oldPage = currentPage;
+            }
+        }
+    }
 }

@@ -17,7 +17,7 @@ module.exports = {
                 instructors.avatar_url, 
                 instructors.name, 
                 instructors.services, 
-                COUNT(members.*) AS total_members
+                COUNT(members) AS total_members
             FROM instructors 
             LEFT JOIN members ON (members.instructor_id = instructors.id)
             GROUP BY instructors.id
@@ -80,6 +80,40 @@ module.exports = {
 
         db.query(sql, [id], err => {
             if (err) throw `Unexpected error: ${err}`;
+        });
+    },
+    paginate(params) {
+        const { filter, limit, offset, callback } = params;
+
+        let sql = "",
+            filterQuery = ``,
+            totalQuery = ``;
+
+        sql = `
+            SELECT instructors.*, COUNT(members) AS total_members
+            FROM instructors
+            LEFT JOIN members ON (instructors.id = members.instructor_id)
+        `;
+
+        if (filter) {
+            sql = `
+                ${sql}
+                WHERE instructors.name ILIKE '%${filter}%'
+                OR instructors.services ILIKE '%${filter}%'
+            `;
+        }
+
+        sql = `
+            ${sql}
+            GROUP BY instructors.id
+            ORDER BY instructors.id 
+            LIMIT $1 OFFSET $2
+        `;
+
+        db.query(sql, [limit, offset], (err, results) => {
+            if (err) throw `Unexpected error: ${err}`;
+
+            return callback(results.rows);
         });
     }
 }
