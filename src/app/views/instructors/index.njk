@@ -53,6 +53,17 @@
                 {% endif %}
             </table>
         </section>
-        <section class="pagination"></section>
+        <section 
+            class="pagination"
+            data-page=15
+            data-total=20
+            data-filter={{filter}}
+        ></section>
+        {# <section 
+            class="pagination"
+            data-page={{pagination.page}}
+            data-total={{pagination.total}}
+            data-filter={{filter}}
+        ></section> #}
     </div>
 {% endblock content %}

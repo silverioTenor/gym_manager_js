@@ -2,8 +2,6 @@
 /* ======================= BUTTON ASIDE ======================= */
 /* ============================================================ */
 
-const { paginate } = require("../src/app/models/instructor.dao");
-
 if (document.querySelector('#toggle')) {
     const currentPage = location.pathname;
 
@@ -55,27 +53,59 @@ if (document.querySelector('.options')) {
 
 if (document.querySelector('.pagination')) {
 
-    function paginate(totalPages, selectedPages) {
+    function paginate(selectedPage, totalPages) {
         let pages = [],
             oldPage;
 
         for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
-            
+
             const firstAndLastPage = currentPage == 1 || currentPage == totalPages;
-            const pagesBeforeSelectedPage = currentPage >= selectedPages - 2;
-            const pagesAfterSelectedPage = currentPage <= selectedPages + 2;
+            const pagesBeforeSelectedPage = currentPage >= selectedPage - 2;
+            const pagesAfterSelectedPage = currentPage <= selectedPage + 2;
 
             if (firstAndLastPage || pagesBeforeSelectedPage && pagesAfterSelectedPage) {
 
                 if (oldPage && currentPage - oldPage > 2) {
                     pages.push("...");
                 }
-                else if (oldPage && currentPage - oldPage == 2) {
+
+                if (oldPage && currentPage - oldPage == 2) {
                     pages.push(currentPage - 1);
                 }
+
+                pages.push(currentPage);
 
                 oldPage = currentPage;
             }
         }
+
+        return pages;
     }
+
+    const pagination = document.querySelector('.pagination');
+    const page = Number(pagination.dataset.page);
+    const total = +pagination.dataset.total;
+
+    const pages = paginate(page, total);
+
+    let elements = document.createElement('div');
+
+    for (let page of pages) {
+
+        if (String(page).includes("...")) {
+            let element = document.createElement('span');
+            element.innerHTML = page;
+
+            elements.appendChild(element);
+        } 
+        else {
+            let element = document.createElement('a');
+            element.setAttribute('href', `?page=${page}`);
+            element.innerHTML = page;
+
+            elements.appendChild(element);
+        }
+    }
+
+    pagination.appendChild(elements);
 }

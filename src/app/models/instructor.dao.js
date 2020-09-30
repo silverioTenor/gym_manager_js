@@ -87,24 +87,27 @@ module.exports = {
 
         let sql = "",
             filterQuery = ``,
-            totalQuery = ``;
-
-        sql = `
-            SELECT instructors.*, COUNT(members) AS total_members
-            FROM instructors
-            LEFT JOIN members ON (instructors.id = members.instructor_id)
-        `;
+            totalQuery = `(
+                SELECT count(*) FROM instructors
+            ) AS total`;
 
         if (filter) {
-            sql = `
-                ${sql}
+            filterQuery = `
                 WHERE instructors.name ILIKE '%${filter}%'
                 OR instructors.services ILIKE '%${filter}%'
             `;
+
+            totalQuery = `(
+                SELECT count(*) FROM instructors
+                ${filterQuery}
+            ) AS total`;
         }
 
         sql = `
-            ${sql}
+            SELECT instructors.*, ${totalQuery}, COUNT(members) AS total_members
+            FROM instructors
+            LEFT JOIN members ON (instructors.id = members.instructor_id)
+            ${filterQuery}
             GROUP BY instructors.id
             ORDER BY instructors.id 
             LIMIT $1 OFFSET $2

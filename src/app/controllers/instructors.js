@@ -6,7 +6,7 @@ module.exports = {
         let { filter, page, limit } = req.query;
 
         page = page || 1;
-        limit = limit || 2;
+        limit = limit || 1;
         let offset = limit * (page - 1);
 
         const params = {
@@ -24,7 +24,12 @@ module.exports = {
                     }
                 }
 
-                res.render("instructors/index", { instructorsList });
+                const pagination = { 
+                    total: Math.ceil(instructors[0].total / limit), 
+                    page 
+                }
+
+                res.render("instructors/index", { instructorsList, filter, pagination });
             }
         }
 
@@ -60,7 +65,7 @@ module.exports = {
     },
     show(req, res) {
         const { id } = req.params;
-        
+
         Instructor.get(id, instructor => {
 
             const inst = {
