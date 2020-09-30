@@ -528,3 +528,43 @@ table tr td .service + .service {
 .decision button:first-child:hover {
     background-color: #d82323;
 }
+
+/* ===================== PAGINATION ===================== */
+
+.pagination div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination span,
+.pagination a {
+    width: 30px;
+    height: 30px;
+    line-height: 32px;
+
+    margin: 0 4px;
+    display: inline-block;
+
+    text-align: center;
+    font-weight: bold;
+
+    color: #777;
+    border-radius: 4px;
+    border: 2px solid var(--primary-color);
+
+    transition: ease-in-out 0.1s;
+}
+
+.pagination a:hover {
+    color: #fff;
+    background-color: var(--primary-color);
+}
+
+.pagination span {
+    margin: initial;
+    line-height: 36px;
+    
+    background-color: initial;
+    border: initial;
+}
