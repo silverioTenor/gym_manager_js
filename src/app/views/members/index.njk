@@ -5,10 +5,10 @@
         <section class="search">
             <a href="/members/create" class="button">Novo membro</a>
 
-            <div class="filter">
+            <form method="GET" action="/members" class="filter">
                 <button type="submit" class="button">Pesquisar</button>
-                <input type="text" name="filter" placeholder="Membro"/>
-            </div>
+                <input type="text" name="filter" placeholder="Nome ou e-mail"/>
+            </form>
         </section>
         <section class="table">
             <table>
@@ -49,6 +49,14 @@
                 {% endif %}
             </table>
         </section>
-        <section class="pagination"></section>
+        {% if pagination.total > 1 %}
+            <section 
+                class="pagination"
+                data-page={{pagination.page}}
+                data-total={{pagination.total}}
+                data-filter={{filter}}
+            >
+            </section>
+        {% endif %}
     </div>
 {% endblock content %}

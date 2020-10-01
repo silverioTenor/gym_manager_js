@@ -12,23 +12,39 @@ module.exports = {
             callback(results.rows[0]);
         });
     },
-    getAll(callback) {
-        const sql = `
+    getAll(params) {
+        const { filter, limit, offset, callback } = params;
+
+        let sql = "",
+            filterQuery = "",
+            totalQuery = `(SELECT count(members) FROM members) AS total`;
+
+        if (filter) {
+            filterQuery = `
+                    WHERE members.name ILIKE '%${filter}%'
+                    OR members.email ILIKE '%${filter}%'
+                `;
+        }
+
+        sql = `
             SELECT 
                 members.id, 
                 members.avatar_url, 
                 members.name, 
                 members.email,
-                instructors.name AS instructor
+                instructors.name AS instructor,
+                ${totalQuery}
             FROM members 
             INNER JOIN instructors ON (members.instructor_id = instructors.id)
-            ORDER BY members.id;
+            ${filterQuery}
+            ORDER BY members.id
+            LIMIT $1 OFFSET $2
         `;
 
-        db.query(sql, null, (err, results) => {
+        db.query(sql, [limit, offset], (err, results) => {
             if (err) throw `Unexpected error: ${err}`;
 
-            callback(results.rows);
+            return callback(results.rows);
         });
     },
     getInstructors(callback) {
@@ -78,7 +94,7 @@ module.exports = {
         const sql = `DELETE FROM members WHERE id = $1`;
 
         db.query(sql, [id], err => {
-            if (err)throw `Unexpected error: ${err}`;
+            if (err) throw `Unexpected error: ${err}`;
         });
     }
 }

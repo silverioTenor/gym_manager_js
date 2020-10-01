@@ -3,9 +3,27 @@ const { age, date, typeBlood } = require('../../lib/utils');
 
 module.exports = {
     index(req, res) {
-        Member.getAll(members => {
-            res.render("members/index", { membersList: members });
-        });
+        let { filter, page, limit } = req.query;
+
+        page = page || 1;
+        limit = limit || 3;
+        let offset = limit * (page - 1);
+
+        const params = {
+            filter,
+            page,
+            limit,
+            offset,
+            callback(members) {
+                const pagination = {
+                    total: Math.ceil(members[0].total / limit),
+                    page
+                }
+                res.render("members/index", { membersList: members, filter, pagination });
+            }
+        }
+
+        Member.getAll(params);
     },
     create(req, res) {
         Member.getInstructors(instructors => {
